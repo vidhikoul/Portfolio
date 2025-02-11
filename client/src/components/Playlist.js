@@ -1,10 +1,25 @@
-import React from 'react'
+// import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Spinner from 'react-bootstrap/Spinner';
+import React, { useEffect, useState } from 'react'
 import projectData from './data';
 function Playlist() {
+  const [spin,setSpin]=useState(true);
+  useEffect(()=>
+  {
+    setTimeout(()=>
+    {
+      setSpin(false)
+
+    },1500)
+  })
   return (
-    <div className='container'>
+    <>
+    {
+      spin?<div className='d-flex justify-content-center align-items-center' style={{height:"90vh"}}>
+        <Spinner animation="border" variant="danger" />&nbsp;&nbsp; Loading ...
+      </div>: <div className='container'>
       <h2 className='text-center mt-2'>Projects</h2>
       <div className="card_div">
       <div className="row d-flex justify-content-around align-items-center">
@@ -32,6 +47,9 @@ function Playlist() {
       </div>
       </div>
     </div>
+    }
+   
+    </>
   )
 }
 

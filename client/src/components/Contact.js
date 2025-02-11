@@ -1,8 +1,32 @@
-import React from 'react'
+// import React from 'react'
 import "./Contact.css"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import React,{useState} from 'react'
 function Contact() {
+  const [inputvalue,setInputvalue]=useState(
+    {
+      fname:"",
+      lname:"",
+      email:"",
+      mobile:"",
+      message:"",
+
+
+    }
+  );
+  const getvalue=(e)=>
+  {
+    const {name,value}=e.target;
+    setInputvalue(()=>{
+      return {
+        ...inputvalue,
+        [name]:value
+      }
+
+    }
+    )
+  }
   return (
     <>
       <div className='container mb-3 contact'>
@@ -11,23 +35,23 @@ function Contact() {
           <Form className='row mt-2 '>
             <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
               <Form.Label>First name</Form.Label>
-              <Form.Control type="text" name="fname" />
+              <Form.Control type="text" name="fname" onChange={getvalue}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Last name</Form.Label>
-              <Form.Control type="text" name="name" />
+              <Form.Control type="text" name="name" onChange={getvalue}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email id</Form.Label>
-              <Form.Control type="text" name="Email" />
+              <Form.Control type="text" name="Email" onChange={getvalue}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Mobile no.</Form.Label>
-              <Form.Control type="text" name="Mobile" />
+              <Form.Control type="text" name="Mobile" onChange={getvalue}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label>Message</Form.Label>
-        <Form.Control as="Message" rows={4} />
+        <Form.Control as="textarea" rows={4} name="message" onChange={getvalue}/>
       </Form.Group>
 
             <div className='d-flex justify-content-center'></div>
